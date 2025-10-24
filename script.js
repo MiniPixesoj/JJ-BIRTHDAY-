@@ -36,7 +36,6 @@ function createFloating() {
     element.style.top = Math.random() * 100 + 'vh';
 
     // --- CAMBIO 1: MÁS INTENSOS (MÁS GRANDES) ---
-    // Hacemos el tamaño aleatorio más grande. Antes era 20px-40px. Ahora es 25px-55px.
     element.style.fontSize = (Math.random() * 30 + 25) + 'px';
 
     document.body.appendChild(element);
@@ -45,13 +44,11 @@ function createFloating() {
         y: -500, // Que suban
 
         // --- CAMBIO 2: MÁS INTENSOS (MÁS MOVIMIENTO) ---
-        // Aumentamos el rango de movimiento horizontal. Antes era -50 a +50. Ahora es -100 a +100.
         x: Math.random() * 200 - 100,
 
         rotation: Math.random() * 360,
 
         // --- CAMBIO 3: MÁS RÁPIDO ---
-        // Reducimos la duración. Antes era de 7 a 12 seg. Ahora es de 3 a 6 seg.
         duration: Math.random() * 3 + 3,
 
         opacity: 1,
@@ -86,28 +83,51 @@ window.addEventListener('load', () => {
     setTimeout(typeGreeting, 1000);
 
     // --- CAMBIO 4: MÁS ABUNDANTES ---
-    // Creamos un elemento nuevo mucho más seguido. Antes era cada 800ms. Ahora es cada 300ms.
-    // ¡Cuidado! Si pones un número muy bajo (ej. 50) puede alentar la computadora.
     setInterval(createFloating, 300);
 });
 
-// Efectos de hover y clic del botón
-document.querySelectorAll('.cta-button').forEach(button => {
-    // El hover de CSS ya es bueno, así que quitamos el de GSAP para evitar conflictos
-    // button.addEventListener('mouseenter', ...
-    // button.addEventListener('mouseleave', ...
 
-    // Transición suave de página al hacer clic
-    button.addEventListener('click', (e) => {
-        e.preventDefault(); // Previene cualquier comportamiento por defecto
-        gsap.to('body', {
-            opacity: 0,
-            duration: 0.7,
-            ease: "power1.in",
-            onComplete: () => {
-                // Aquí va la página de las "razones"
-                window.location.href = 'cause.html';
-            }
-        });
+// === NUEVAS VARIABLES DE AUDIO ===
+const ctaButton = document.querySelector('.cta-button');
+const backgroundMusic = document.getElementById('backgroundMusic');
+const clickSound = document.getElementById('clickSound');
+
+let musicStarted = false; // Bandera para controlar la reproducción de fondo
+
+function playClickSound() {
+    if (clickSound) {
+        clickSound.currentTime = 0; // Reinicia para permitir múltiples clics rápidos
+        clickSound.volume = 0.8; // Volumen del sonido de clic
+        clickSound.play().catch(e => console.error("Error al reproducir el sonido de clic:", e));
+    }
+}
+// ===================================
+
+
+// Efectos de hover y clic del botón
+ctaButton.addEventListener('click', (e) => {
+    e.preventDefault(); // Previene cualquier comportamiento por defecto
+
+    // 1. Lógica de inicio de música (Solo en el primer clic)
+    if (!musicStarted && backgroundMusic) {
+        backgroundMusic.volume = 0.4; // Volumen más bajo para el fondo
+        backgroundMusic.play().catch(e => console.error("Error al iniciar la música de fondo:", e));
+        musicStarted = true;
+    }
+
+    // 2. Sonido del clic
+    playClickSound();
+
+    // 3. Transición suave de página al hacer clic
+    gsap.to('body', {
+        opacity: 0,
+        duration: 0.7,
+        ease: "power1.in",
+        onComplete: () => {
+            // Detener la música al salir de la página
+            if (backgroundMusic) backgroundMusic.pause();
+            // Aquí va la página de las "razones"
+            window.location.href = 'cause.html';
+        }
     });
 });

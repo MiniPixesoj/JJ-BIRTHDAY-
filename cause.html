@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Razones de Nuestra Amistad! 💖</title>
+    <title>¡Razones de Nuestro Amor! 💖</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <link rel="stylesheet" href="./cause.css">
 </head>
@@ -28,11 +28,16 @@
                 <img src="./d1.jpg" alt="Abrazo de Peluche">
             </div>
             <div class="ending-text">¡Eres la MEJOR! 💖</div>
+            <div class="ending-text">.</div>
         </div>
 
         <button class="shuffle-button">Haz Clic Aquí... 💕</button>
         <div class="reason-counter"></div>
     </div>
+
+    <audio id="backgroundMusic" src="hbd.mp3" loop autoplay></audio>
+
+    <audio id="clickSound" src="click_sparkle.mp3" preload="auto"></audio>
 
     <script>
         const cursor = document.querySelector('.custom-cursor');
@@ -42,6 +47,14 @@
                 x: e.clientX,
                 y: e.clientY
             });
+        });
+
+        // Opcional: Ajustar el volumen de la música de fondo aquí
+        document.addEventListener('DOMContentLoaded', () => {
+            const bgMusic = document.getElementById('backgroundMusic');
+            if (bgMusic) {
+                bgMusic.volume = 0.4; // Por ejemplo, 40% del volumen
+            }
         });
     </script>
 

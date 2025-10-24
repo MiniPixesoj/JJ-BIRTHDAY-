@@ -49,6 +49,9 @@ body {
     text-align: center;
     position: relative;
     z-index: 1;
+    /* Dejar mucho más espacio en la parte inferior */
+    padding-bottom: 350px;
+    /* ¡IMPORTANTE! */
 }
 
 /* --- Título (H1) --- */
@@ -68,6 +71,8 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* === NUEVO: Deja espacio libre para el botón fijo === */
+    padding-bottom: 150px;
 }
 
 .reason-card {
@@ -120,8 +125,16 @@ h1 {
     z-index: 1;
 }
 
-/* --- Botón (Mantenerlo vibrante) --- */
+/* --- Botón (ANCLADO EN LA PARTE INFERIOR) --- */
 .shuffle-button {
+    /* === PROPIEDADES CLAVE PARA LA SOLUCIÓN === */
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 102;
+    /* ========================================= */
+
     font-family: 'Comic Neue', cursive;
     font-weight: 700;
     /* Degradado vibrante */
@@ -132,7 +145,8 @@ h1 {
     font-size: 1.3rem;
     color: #1f0b38;
     /* Texto oscuro para contraste */
-    margin: 2.5rem 0 1.5rem;
+    margin: 0;
+    /* Eliminar margen para mejor control fijo */
     cursor: pointer;
     transition: all 0.3s ease;
     /* Sombra de neón */
@@ -141,7 +155,8 @@ h1 {
 }
 
 .shuffle-button:hover {
-    transform: scale(1.1);
+    transform: translateX(-50%) scale(1.1);
+    /* Ajuste el transform para mantener el centrado */
     /* Sombra de neón al pasar el mouse más intensa */
     box-shadow: 0 0 25px rgba(255, 105, 180, 1);
 }
@@ -149,30 +164,66 @@ h1 {
 .shuffle-button.story-mode {
     /* Degradado final púrpura a rosa */
     background: linear-gradient(45deg, #a73cff, #ff00c8);
-    transform: scale(1.1);
+    transform: translateX(-50%) scale(1.1);
+    /* Ajuste el transform para mantener el centrado */
     box-shadow: 0 0 20px #a73cff;
 }
 
 .shuffle-button.story-mode:hover {
-    transform: scale(1.2);
+    transform: translateX(-50%) scale(1.2);
+    /* Ajuste el transform para mantener el centrado */
 }
 
-/* --- Contador --- */
+/* --- Contador (Mantenerlo sobre el botón) --- */
 .reason-counter {
     font-size: 1rem;
     font-weight: 700;
     color: #ff69b4;
+    /* === NUEVO: Posición y Z-index para que sea visible === */
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 101;
+    /* ================================================== */
     margin-top: 1rem;
     opacity: 0.8;
+    background: rgba(18, 0, 48, 0.8);
+    padding: 5px 15px;
+    border-radius: 10px;
 }
 
-/* --- Sección Final --- */
+/* --- Sección Final (ANCLADA EN LA PARTE INFERIOR) --- */
 .ending-section {
-    margin-top: 4rem;
-    padding: 2rem;
+    /* === PROPIEDADES CLAVE PARA LA SOLUCIÓN === */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    /* === NUEVO: Oculta la sección completamente por debajo (100% de su propia altura) === */
+    transform: translateY(100%);
+    /* ========================================= */
+
+    /* === Ajustes visuales para el anclaje === */
+    background: rgba(18, 0, 48, 0.95);
+    border-top: 1px solid rgba(255, 105, 180, 0.3);
+    /* Se ajusta el padding, ahora que la altura es controlada */
+    padding: 1rem 2rem 2rem 2rem;
+    /* ======================================== */
+
     text-align: center;
     opacity: 0;
-    display: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* ================================================================= */
+
+    /* Quita el margin-top de 4rem, ya no es necesario con fixed */
+    margin-top: 0;
+    /* Debe ser 'block' para que GSAP lo anime. El 'display: none' lo manejaremos con opacidad/transformación. */
 }
 
 .ending-text {

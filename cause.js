@@ -1,6 +1,5 @@
 // --- BASE DE DATOS DE RAZONES (¡TRADUCIDA Y CON MEJOR TEXTO!) ---
 const reasons = [
-    // --- Razones de la Distancia y el Vínculo Único ---
     {
         text: "La forma en que nuestro amor supera la distancia y las fronteras, demostrando que es real y fuerte. 🌍",
         emoji: "✈️",
@@ -21,8 +20,6 @@ const reasons = [
         emoji: "⏳",
         gif: "gif3.gif"
     },
-
-    // --- Razones de su Personalidad y Corazón ---
     {
         text: "Eres una persona tan bondadosa y maravillosa; me siento afortunado de tener un vínculo tan especial contigo. 💖",
         emoji: "🌟",
@@ -48,8 +45,6 @@ const reasons = [
         emoji: "😇",
         gif: "gif2.gif"
     },
-
-    // --- Razones de su Lealtad y Cualidades Protectoras ---
     {
         text: "Eres la persona más fiel que conozco. Tu lealtad y compromiso me dan una paz inmensa. 💍",
         emoji: "🔒",
@@ -65,8 +60,6 @@ const reasons = [
         emoji: "💪",
         gif: "gif1.gif"
     },
-
-    // --- Razones Físicas y de Futuro ---
     {
         text: "No miento: eres físicamente hermosa. Cada foto o video tuyo es un regalo para mis ojos. 😍",
         emoji: "📸",
@@ -97,8 +90,6 @@ const reasons = [
         emoji: "🧘‍♀️",
         gif: "gif4.gif"
     },
-
-    // --- Razones de su Belleza y Personalidad ---
     {
         text: "Esa carita tuya... es mi cosa favorita en todo el mundo. Verla me recarga las baterías al instante. 😄",
         emoji: "😊",
@@ -119,8 +110,6 @@ const reasons = [
         emoji: "🤣",
         gif: "gif1.gif"
     },
-
-    // --- Razones de su Lado Protector/Fiel ---
     {
         text: "Me fascina que me defiendas y me protejas. Saber que soy 'tuyo' y que lo demuestras es increíble. 🛡️",
         emoji: "🦁",
@@ -136,8 +125,6 @@ const reasons = [
         emoji: "🔥",
         gif: "gif4.gif"
     },
-
-    // --- Razones Románticas y Finales ---
     {
         text: "La forma en que me amas no se compara con nada. Es un amor único, grande y apasionado. Es un privilegio. ✨",
         emoji: "💘",
@@ -166,7 +153,21 @@ const reasonCounter = document.querySelector('.reason-counter');
 const endingSection = document.querySelector('.ending-section');
 const teddyHug = document.querySelector('.teddy-hug');
 const endingText = document.querySelector('.ending-text');
+const clickSound = document.getElementById('clickSound');
+const backgroundMusic = document.getElementById('backgroundMusic');
 
+// === NUEVO: Bandera para controlar la música de fondo ===
+let musicStarted = false;
+
+
+function playClickSound() {
+    if (clickSound) {
+        clickSound.currentTime = 0; // Reinicia el sonido
+        clickSound.volume = 0.8; // Establece un volumen para el clic (opcional)
+        // Usamos .play().catch() para manejar posibles errores de reproducción
+        clickSound.play().catch(e => console.error("Error al reproducir el sonido de clic:", e));
+    }
+}
 
 // --- 1. FUNCIÓN CREAR TARJETA ---
 function createReasonCard(reason) {
@@ -190,7 +191,7 @@ function createReasonCard(reason) {
         { opacity: 0, y: 50 },
         // HACIA (end)
         {
-            opacity: 1, // <--- ¡Asegura que termine en 1!
+            opacity: 1,
             y: 0,
             duration: 0.8,
             ease: "elastic.out(1, 0.75)"
@@ -224,7 +225,7 @@ function displayNewReason() {
         if (currentReasonIndex === reasons.length) {
             allReasonsShown = true;
 
-            // Animación y cambio de texto del botón (Traducido)
+            // Animación y cambio de texto del botón
             gsap.to(shuffleButton, {
                 scale: 1.1,
                 duration: 0.5,
@@ -235,11 +236,21 @@ function displayNewReason() {
                 }
             });
 
-            // Muestra la sección final con animación
+            // Oculta el contador
             gsap.to(reasonCounter, { opacity: 0, duration: 0.5, delay: 0.5 });
 
-            endingSection.style.display = 'block';
-            gsap.to(endingSection, { opacity: 1, y: 0, duration: 1, ease: 'power2.out', delay: 1 });
+
+            // === ANIMACIÓN CORREGIDA DE LA SECCIÓN FINAL ===
+            // 1. Aparece con opacidad y desliza hacia arriba (y: 0)
+            gsap.to(endingSection, {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: 'power2.out',
+                delay: 1
+            });
+
+            // 2. Animaciones internas del peluche y el texto
             gsap.to(teddyHug, { scale: 1, duration: 1, ease: 'elastic.out(1, 0.75)', delay: 1.5 });
             gsap.to(endingText, { opacity: 1, y: 0, duration: 1, delay: 1.8 });
 
@@ -252,9 +263,17 @@ function displayNewReason() {
 }
 
 
-// --- 3. FUNCIÓN BOTÓN (CORREGIDA LA LÓGICA FINAL) ---
+// --- 3. FUNCIÓN BOTÓN (CORREGIDA LA LÓGICA DE INICIO DE AUDIO) ---
 shuffleButton.addEventListener('click', () => {
-    // Animación de clic
+    // 1. **INICIO DE MÚSICA DE FONDO (SOLO EN EL PRIMER CLIC)**
+    if (!musicStarted && backgroundMusic) {
+        backgroundMusic.volume = 0.4; // Ajustar volumen para fondo
+        // Forzamos la reproducción, que ahora es permitida por el navegador
+        backgroundMusic.play().catch(e => console.error("Error al iniciar la música de fondo:", e));
+        musicStarted = true;
+    }
+
+    // 2. Animación de clic
     gsap.to(shuffleButton, {
         scale: 0.9,
         duration: 0.1,
@@ -262,8 +281,17 @@ shuffleButton.addEventListener('click', () => {
         repeat: 1
     });
 
+    // 3. Sonido de clic (siempre)
+    playClickSound();
+
     if (allReasonsShown) {
         // Lógica de transición a la página final
+
+        // Detenemos la música de fondo antes de cambiar de página
+        if (backgroundMusic) {
+            backgroundMusic.pause();
+        }
+
         gsap.to('body', {
             opacity: 0,
             duration: 1,
@@ -277,7 +305,6 @@ shuffleButton.addEventListener('click', () => {
         displayNewReason();
     }
 });
-
 
 // --- 4. FUNCIÓN DE EMOTICONES FLOTANTES (MEJORADA) ---
 function createFloatingElement() {
