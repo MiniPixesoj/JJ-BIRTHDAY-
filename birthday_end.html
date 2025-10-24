@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡FELIZ CUMPLEAÑOS, MI AMOR! 🎉</title>
+    <link rel="stylesheet" href="./last.css">
+    <style>
+        /* Estilos específicos para la página final de celebración */
+        body {
+            /* Asegura que el cuerpo se vea bien para el contenido centrado */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .celebration-container {
+            position: relative;
+            z-index: 5;
+            max-width: 900px;
+            padding: 2rem;
+            /* Fondo semi-transparente para resaltar */
+            background: rgba(10, 0, 30, 0.95);
+            border-radius: 30px;
+            border: 3px solid #ff007f;
+            /* Borde de celebración */
+            box-shadow: 0 0 40px rgba(255, 0, 127, 0.8), 0 0 20px rgba(255, 255, 255, 0.3);
+            /* === CORRECCIÓN AQUÍ: Agregamos forwards === */
+            animation: popIn 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+
+            transform: scale(0.8);
+            opacity: 0;
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            80% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            /* Aseguramos que la opacidad sea 1 */
+        }
+
+        .celebration-container h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5.5rem;
+            color: #ff007f;
+            /* Neón Rosa Fuerte */
+            margin-bottom: 0.5rem;
+            /* Efecto de luz intensa en el texto */
+            text-shadow: 0 0 20px #ff007f, 0 0 10px #ff69b4, 0 0 5px #ffffff;
+            animation: heartbeat 1.5s infinite alternate;
+        }
+
+        .celebration-container h2 {
+            font-size: 2.5rem;
+            color: #a73cff;
+            /* Neón Púrpura */
+            margin-bottom: 2rem;
+            text-shadow: 0 0 10px rgba(167, 60, 255, 0.5);
+        }
+
+        .gif-display {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            margin: 2rem 0;
+            border-radius: 15px;
+            object-fit: contain;
+            /* Simula un marco de TV/Pantalla */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            background-color: black;
+            border: 5px solid #ff69b4;
+        }
+
+        .final-emojis {
+            font-size: 3rem;
+            margin-top: 1rem;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.02);
+            }
+        }
+
+
+        /* Esconde corazones y chispas de fondo en esta vista para centrar la atención */
+        .magic-sparkles,
+        .floating-hearts {
+            opacity: 0.2;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .celebration-container h1 {
+                font-size: 3.5rem;
+            }
+
+            .celebration-container h2 {
+                font-size: 1.8rem;
+            }
+
+            .gif-display {
+                max-height: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="magic-sparkles"></div>
+    <div class="floating-hearts">
+    </div>
+
+    <div class="celebration-container">
+        <h1>¡¡FELIZ CUMPLEAÑOS, MI REYNA!!</h1>
+
+        <h2>Que tu día esté lleno de la alegría que te mereces. ❤️</h2>
+
+        <img src="celebration_gif.gif" alt="GIF de Celebración de Cumpleaños" class="gif-display">
+
+        <div class="final-emojis">
+            🎂🎉🎁🥳🎈🎊
+        </div>
+
+        <p style="color: #ccc; margin-top: 1rem; font-size: 1.2rem;">
+            Gracias por el amor, la complicidad y por ser tú. Te adoro con todo mi ser.
+        </p>
+
+    </div>
+</body>
+
+</html>
