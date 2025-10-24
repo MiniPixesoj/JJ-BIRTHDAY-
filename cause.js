@@ -1,14 +1,3 @@
- // --- Cursor Suave (Mejorado) ---
-const cursor = document.querySelector('.custom-cursor');
-document.addEventListener('mousemove', (e) => {
-    gsap.to(cursor, {
-        duration: 0.3,
-        x: e.clientX,
-        y: e.clientY,
-        ease: "power2.out"
-    });
-});
-
 // --- ¡¡IMPORTANTE!! EDITA ESTAS RAZONES ---
 // ¡He creado razones románticas en español para Jennifer!
 // Asegúrate de que los archivos gif (ej. 'gif1.gif') existan en tu carpeta.
@@ -86,7 +75,8 @@ function displayNewReason() {
 
     if (currentReasonIndex < reasons.length) {
         const card = createReasonCard(reasons[currentReasonIndex]);
-        reasonsContainer.appendChild(card);
+        // Añade la nueva tarjeta a la parte SUPERIOR del contenedor, no al final
+        reasonsContainer.prepend(card);
         
         // Actualiza el contador (en español)
         reasonCounter.textContent = `Razón ${currentReasonIndex + 1} de ${reasons.length}`;
@@ -149,7 +139,7 @@ function displayNewReason() {
     }
 }
 
-// --- Listener del Botón Principal (Mejorado) ---
+// --- Listener del Botón Principal ---
 shuffleButton.addEventListener('click', () => {
     // Animación de clic
     gsap.to(shuffleButton, {
@@ -176,7 +166,7 @@ shuffleButton.addEventListener('click', () => {
     }
 });
 
-// --- Función de Emojis Flotantes (Mejorada) ---
+// --- Función de Emojis Flotantes ---
 function createFloatingElement() {
     const elements = ['🌸', '✨', '💖', '❤️', '⭐', '🥰'];
     const element = document.createElement('div');
@@ -187,19 +177,27 @@ function createFloatingElement() {
     const buttonRect = shuffleButton.getBoundingClientRect();
     element.style.left = (buttonRect.left + buttonRect.width / 2) + (Math.random() * 100 - 50) + 'px';
     element.style.top = (buttonRect.top + window.scrollY) + 'px';
-    element.style.fontSize = (Math.random() * 30 + 25) + 'px'; // Más grandes
+    element.style.fontSize = (Math.random() * 30 + 25) + 'px'; 
     
     document.body.appendChild(element);
 
     // Animación (más rápida e intensa)
     gsap.to(element, {
-        y: (Math.random() * -300) - 200, // Sube
-        x: (Math.random() * 300) - 150, // Se esparce
+        y: (Math.random() * -300) - 200, 
+        x: (Math.random() * 300) - 150, 
         rotation: Math.random() * 360,
         scale: (Math.random() * 0.5) + 0.5,
         opacity: 1,
-        duration: Math.random() * 2 + 2, // Más rápido
+        duration: Math.random() * 2 + 2, 
         ease: "power1.out",
         onComplete: () => element.remove()
     });
 }
+
+
+// --- INICIALIZACIÓN (NUEVO) ---
+// Simplemente para que al cargar se vea el botón centrado.
+// Antes el botón estaba pegado al título.
+document.addEventListener('DOMContentLoaded', () => {
+    gsap.from(shuffleButton, { opacity: 0, y: 30, duration: 1, ease: 'power2.out', delay: 0.5 });
+});
