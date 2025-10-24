@@ -257,5 +257,44 @@
     </div>
 
     <script src="cause.js"></script>
-</body>
-</html>
+<body>
+    
+    <div class="custom-cursor">
+        <svg viewBox="0 0 24 24">
+            <path fill="#ff69b4" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+    </div>
+
+    <div class="container">
+        <h1>Razones por las que te amo, Jen ❤️</h1>
+        
+        <div id="reasons-container"></div>
+        
+        <button class="shuffle-button">Una razón más... 💕</button>
+        <div class="reason-counter"></div>
+
+        <div class="ending-section">
+            <div class="teddy-hug">
+                <img src="./d1.jpg" alt="Abrazo de oso">
+            </div>
+            <div class="ending-text">¡Eres mi todo, mi amor! 🥰</div>
+        </div>
+    </div>
+    
+    <script src="cause.js"></script>
+
+    <script>
+        // --- Solución del cursor: Mueve el corazón suavemente ---
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                duration: 0.3,
+                x: e.clientX,
+                y: e.clientY,
+                ease: "power2.out"
+            });
+        });
+        // La regla CSS 'transform: translate(-50%, -50%);' se encarga de centrar el corazón.
+    </script>
+
+</body> </html>
