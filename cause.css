@@ -17,10 +17,20 @@ body {
     animation: gradientBG 20s ease infinite;
     /* Animación más lenta en oscuro */
     font-family: 'Quicksand', sans-serif;
-    overflow-x: hidden;
     padding: 2rem;
     color: #f0f0f0;
     /* Texto claro por defecto */
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+html,
+body {
+    width: 100%;
+    /* Impedir que la página se mueva horizontalmente por fuera */
+    max-width: 100%;
+    /* Impedir que el contenido extra pueda generar scroll indeseado */
+    overflow-x: hidden;
 }
 
 /* --- Cursor (Mantener color vibrante sobre oscuro) --- */
@@ -59,11 +69,10 @@ h1 {
     font-family: 'Bubblegum Sans', cursive;
     font-size: 3.5rem;
     color: #ff69b4;
-    /* Rosa neón */
-    /* Sombra de neón más fuerte */
     text-shadow: 0 0 15px rgba(255, 105, 180, 0.8), 0 0 5px rgba(255, 255, 255, 0.5);
     margin-bottom: 2.5rem;
-    animation: bounce 1.5s ease infinite;
+    /* === ¡IMPORTANTE! Si el botón se vuelve loco, DESACTIVA esta línea si estaba activa: */
+    /* animation: bounce 1.5s ease infinite; */
 }
 
 /* --- Tarjetas de Razones (Fondo semi-oscuro) --- */
@@ -131,47 +140,43 @@ h1 {
     position: fixed;
     bottom: 20px;
     left: 50%;
+    /* La transformación para centrar debe ser estable. */
     transform: translateX(-50%);
     z-index: 102;
+    /* Mantener un z-index alto */
     /* ========================================= */
 
     font-family: 'Comic Neue', cursive;
     font-weight: 700;
-    /* Degradado vibrante */
     background: linear-gradient(45deg, #ff69b4, #ff007f);
     border: none;
     border-radius: 50px;
     padding: 1.2rem 2.5rem;
     font-size: 1.3rem;
     color: #1f0b38;
-    /* Texto oscuro para contraste */
-    margin: 0;
-    /* Eliminar margen para mejor control fijo */
     cursor: pointer;
+    /* Quita cualquier 'animation' que pudiera estar aquí */
     transition: all 0.3s ease;
-    /* Sombra de neón */
     box-shadow: 0 0 15px rgba(255, 105, 180, 0.7);
     outline: none;
 }
 
 .shuffle-button:hover {
+    /* El hover debe mantener el transform: translateX(-50%) para no desalinearse */
     transform: translateX(-50%) scale(1.1);
-    /* Ajuste el transform para mantener el centrado */
-    /* Sombra de neón al pasar el mouse más intensa */
     box-shadow: 0 0 25px rgba(255, 105, 180, 1);
 }
 
 .shuffle-button.story-mode {
-    /* Degradado final púrpura a rosa */
     background: linear-gradient(45deg, #a73cff, #ff00c8);
+    /* El modo historia debe mantener el transform: translateX(-50%) */
     transform: translateX(-50%) scale(1.1);
-    /* Ajuste el transform para mantener el centrado */
     box-shadow: 0 0 20px #a73cff;
 }
 
 .shuffle-button.story-mode:hover {
+    /* El hover del modo historia también debe mantenerlo */
     transform: translateX(-50%) scale(1.2);
-    /* Ajuste el transform para mantener el centrado */
 }
 
 /* --- Contador (Mantenerlo sobre el botón) --- */
@@ -296,5 +301,12 @@ h1 {
     .shuffle-button {
         padding: 1rem 2rem;
         font-size: 1.1rem;
+        /* Aseguramos el centrado y la fijeza en móviles */
+        transform: translateX(-50%);
+    }
+
+    .shuffle-button:hover {
+        /* Mantenemos el centrado durante la animación del hover */
+        transform: translateX(-50%) scale(1.05);
     }
 }
