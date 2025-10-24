@@ -1,8 +1,11 @@
+/* Importar fuentes románticas */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none;
+    cursor: none; /* Oculta el cursor normal */
 }
 
 body {
@@ -14,21 +17,30 @@ body {
     background: linear-gradient(-45deg, #fee9f7, #e8f5fe, #fef2e8, #f0ffe8);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
-    font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+    /* Fuente base mejorada */
+    font-family: 'Poppins', sans-serif;
     overflow: hidden;
     position: relative;
 }
 
+/* --- ESTILO DEL CURSOR DE CORAZÓN MEJORADO --- */
 .cursor {
-    width: 20px;
-    height: 20px;
-    background: pink;
-    border-radius: 50%;
+    width: 25px; /* Tamaño del corazón */
+    height: 25px;
     position: fixed;
-    pointer-events: none;
-    mix-blend-mode: difference;
-    transition: transform 0.2s;
+    top: 0;
+    left: 0;
+    pointer-events: none; /* Para que no interfiera con los clics */
+    z-index: 9999;
 }
+.cursor svg {
+    width: 100%;
+    height: 100%;
+    /* Esto centra la punta del corazón en el puntero del mouse */
+    transform: translate(-50%, -50%); 
+}
+/* --- FIN DEL ESTILO DEL CURSOR --- */
+
 
 .container {
     text-align: center;
@@ -36,42 +48,49 @@ body {
 }
 
 h1 {
-    font-size: 3.5rem;
-    color: #ff69b4;
-    text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+    /* Fuente romántica para el título */
+    font-family: 'Dancing Script', cursive;
+    font-size: 4.5rem; /* Un poco más grande */
+    color: #d6336c; /* Un rosa más profundo */
+    text-shadow: 0 0 15px rgba(214, 51, 108, 0.5);
     margin-bottom: 2rem;
     opacity: 0;
 }
 
 .greeting {
+    font-family: 'Poppins', sans-serif;
     font-size: 1.5rem;
-    color: #8a2be2;
+    font-weight: 300;
+    color: #444; /* Color más legible */
     margin-bottom: 3rem;
     min-height: 2em;
 }
 
 .cta-button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
     padding: 1rem 2rem;
     font-size: 1.2rem;
-    background: linear-gradient(45deg, #ff69b4, #ff99cc);
+    background: linear-gradient(45deg, #ff69b4, #d6336c); /* Gradiente actualizado */
     border: none;
     border-radius: 50px;
     color: white;
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+    /* cursor: none; (ya está en el body) */
+    box-shadow: 0 5px 20px rgba(214, 51, 108, 0.5);
     transition: transform 0.3s, box-shadow 0.3s;
     opacity: 0;
 }
 
 .cta-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 25px rgba(255, 105, 180, 0.7);
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 8px 30px rgba(214, 51, 108, 0.6);
 }
 
 .floating {
     position: absolute;
     pointer-events: none;
     opacity: 0;
+    font-size: 2rem; /* Emojis un poco más grandes */
 }
 
 @keyframes gradientBG {
@@ -81,7 +100,7 @@ h1 {
 }
 
 @media (max-width: 768px) {
-    h1 { font-size: 2rem; }
+    h1 { font-size: 3rem; }
     .greeting { font-size: 1.2rem; }
     .cta-button { font-size: 1rem; }
 }
