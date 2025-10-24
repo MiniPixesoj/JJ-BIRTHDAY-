@@ -34,26 +34,26 @@ function createFloating() {
     element.textContent = floatingElements[Math.floor(Math.random() * floatingElements.length)];
     element.style.left = Math.random() * 100 + 'vw';
     element.style.top = Math.random() * 100 + 'vh';
-    
+
     // --- CAMBIO 1: MÁS INTENSOS (MÁS GRANDES) ---
     // Hacemos el tamaño aleatorio más grande. Antes era 20px-40px. Ahora es 25px-55px.
     element.style.fontSize = (Math.random() * 30 + 25) + 'px';
-    
+
     document.body.appendChild(element);
 
     gsap.to(element, {
         y: -500, // Que suban
-        
+
         // --- CAMBIO 2: MÁS INTENSOS (MÁS MOVIMIENTO) ---
         // Aumentamos el rango de movimiento horizontal. Antes era -50 a +50. Ahora es -100 a +100.
-        x: Math.random() * 200 - 100, 
-        
+        x: Math.random() * 200 - 100,
+
         rotation: Math.random() * 360,
-        
+
         // --- CAMBIO 3: MÁS RÁPIDO ---
         // Reducimos la duración. Antes era de 7 a 12 seg. Ahora es de 3 a 6 seg.
-        duration: Math.random() * 3 + 3, 
-        
+        duration: Math.random() * 3 + 3,
+
         opacity: 1,
         ease: "none",
         onComplete: () => element.remove()
@@ -88,7 +88,7 @@ window.addEventListener('load', () => {
     // --- CAMBIO 4: MÁS ABUNDANTES ---
     // Creamos un elemento nuevo mucho más seguido. Antes era cada 800ms. Ahora es cada 300ms.
     // ¡Cuidado! Si pones un número muy bajo (ej. 50) puede alentar la computadora.
-    setInterval(createFloating, 300); 
+    setInterval(createFloating, 300);
 });
 
 // Efectos de hover y clic del botón
@@ -106,7 +106,7 @@ document.querySelectorAll('.cta-button').forEach(button => {
             ease: "power1.in",
             onComplete: () => {
                 // Aquí va la página de las "razones"
-                window.location.href = 'cause.html'; 
+                window.location.href = 'cause.html';
             }
         });
     });

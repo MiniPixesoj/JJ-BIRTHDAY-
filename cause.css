@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Comic+Neue:wght@700&family=Quicksand:wght@500&display=swap');
 
+/* --- Reset y General --- */
 * {
     margin: 0;
     padding: 0;
@@ -7,188 +8,242 @@
     cursor: none;
 }
 
+/* --- CAMBIO PRINCIPAL: FONDO OSCURO CON DEGRADADO SUTIL --- */
 body {
     min-height: 100vh;
-    background: linear-gradient(-45deg, #ffe6e6, #e6e6ff, #ffebf5);
+    /* Fondo oscuro: Azul medianoche y Púrpura oscuro */
+    background: linear-gradient(-45deg, #1f0b38, #0e041e, #1f0b38, #0e041e);
     background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
+    animation: gradientBG 20s ease infinite;
+    /* Animación más lenta en oscuro */
     font-family: 'Quicksand', sans-serif;
     overflow-x: hidden;
     padding: 2rem;
+    color: #f0f0f0;
+    /* Texto claro por defecto */
 }
 
+/* --- Cursor (Mantener color vibrante sobre oscuro) --- */
 .custom-cursor {
     width: 30px;
     height: 30px;
     position: fixed;
     pointer-events: none;
     z-index: 9999;
-    mix-blend-mode: difference;
+    transform: translate(-50%, -50%);
     transition: transform 0.1s;
+    mix-blend-mode: normal;
+    /* Asegura que el color se vea bien */
 }
 
 .custom-cursor svg {
     width: 100%;
     height: 100%;
-    filter: drop-shadow(0 0 5px rgba(255, 182, 193, 0.5));
+    /* Sombra rosa neón/brillante */
+    filter: drop-shadow(0 0 10px #ff69b4);
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
     text-align: center;
     position: relative;
     z-index: 1;
 }
 
+/* --- Título (H1) --- */
 h1 {
     font-family: 'Bubblegum Sans', cursive;
-    font-size: 3rem;
+    font-size: 3.5rem;
     color: #ff69b4;
-    text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
-    margin-bottom: 2rem;
-    animation: bounce 1s ease infinite;
+    /* Rosa neón */
+    /* Sombra de neón más fuerte */
+    text-shadow: 0 0 15px rgba(255, 105, 180, 0.8), 0 0 5px rgba(255, 255, 255, 0.5);
+    margin-bottom: 2.5rem;
+    animation: bounce 1.5s ease infinite;
+}
+
+/* --- Tarjetas de Razones (Fondo semi-oscuro) --- */
+#reasons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .reason-card {
-    background: rgba(255, 255, 255, 0.9);
+    /* Fondo más oscuro y translúcido */
+    background: rgba(30, 10, 50, 0.9);
     border-radius: 20px;
     padding: 2rem;
-    margin: 1.5rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin: 1rem 0;
+    /* Borde sutil y sombra elegante */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 105, 180, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
+    width: 90%;
+    max-width: 600px;
     position: relative;
     overflow: hidden;
+    opacity: 0;
+    text-align: left;
 }
 
 .reason-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.2);
+    transform: translateY(-5px) scale(1.02);
+    /* Sombra al pasar el mouse más luminosa */
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 105, 180, 0.5);
 }
 
 .reason-text {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    color: #e0e0e0;
+    /* Texto claro */
+    font-weight: 500;
     position: relative;
     z-index: 2;
 }
 
+/* --- GIF Overlay (Ajustado para oscuro) --- */
 .gif-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.95);
+    /* Fondo ligeramente más oscuro que el de la tarjeta */
+    background: rgba(20, 5, 40, 0.95);
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity 0.4s;
     z-index: 1;
 }
 
-.reason-card:hover .gif-overlay {
-    opacity: 1;
-}
-
+/* --- Botón (Mantenerlo vibrante) --- */
 .shuffle-button {
-    background: linear-gradient(45deg, #ff69b4, #ff99cc);
+    font-family: 'Comic Neue', cursive;
+    font-weight: 700;
+    /* Degradado vibrante */
+    background: linear-gradient(45deg, #ff69b4, #ff007f);
     border: none;
     border-radius: 50px;
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
-    color: white;
-    margin: 2rem 0;
+    padding: 1.2rem 2.5rem;
+    font-size: 1.3rem;
+    color: #1f0b38;
+    /* Texto oscuro para contraste */
+    margin: 2.5rem 0 1.5rem;
     cursor: pointer;
-    transition: transform 0.3s;
-    font-family: 'Comic Neue', cursive;
-    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+    transition: all 0.3s ease;
+    /* Sombra de neón */
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.7);
+    outline: none;
 }
 
 .shuffle-button:hover {
     transform: scale(1.1);
-}
-
-.floating {
-    position: fixed;
-    pointer-events: none;
-    animation: float 3s ease-in-out infinite;
-}
-
-.ending-section {
-    margin-top: 4rem;
-    padding: 2rem;
-    text-align: center;
-}
-
-.ending-text {
-    font-family: 'Bubblegum Sans', cursive;
-    font-size: 2rem;
-    color: #ff69b4;
-    margin-bottom: 2rem;
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-.teddy-hug {
-    width: 200px;
-    margin: 0 auto;
-    transform: scale(0);
-}
-
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-@media (max-width: 768px) {
-    h1 { font-size: 2rem; }
-    .reason-card { margin: 1rem; }
-    .reason-text { font-size: 1rem; }
-}
-.shuffle-button {
-    background: linear-gradient(45deg, #ff69b4, #ff99cc);
-    border: none;
-    border-radius: 50px;
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
-    color: white;
-    margin: 2rem 0;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-family: 'Comic Neue', cursive;
-    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+    /* Sombra de neón al pasar el mouse más intensa */
+    box-shadow: 0 0 25px rgba(255, 105, 180, 1);
 }
 
 .shuffle-button.story-mode {
-    background: linear-gradient(45deg, #9b6dff, #ff6dc7);
+    /* Degradado final púrpura a rosa */
+    background: linear-gradient(45deg, #a73cff, #ff00c8);
     transform: scale(1.1);
-}
-
-.shuffle-button:hover {
-    transform: scale(1.1);
+    box-shadow: 0 0 20px #a73cff;
 }
 
 .shuffle-button.story-mode:hover {
     transform: scale(1.2);
 }
 
+/* --- Contador --- */
 .reason-counter {
-    font-size: 0.9rem;
+    font-size: 1rem;
+    font-weight: 700;
     color: #ff69b4;
     margin-top: 1rem;
-    opacity: 0.7;
+    opacity: 0.8;
+}
+
+/* --- Sección Final --- */
+.ending-section {
+    margin-top: 4rem;
+    padding: 2rem;
+    text-align: center;
+    opacity: 0;
+    display: none;
+}
+
+.ending-text {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 3rem;
+    color: #ff69b4;
+    margin-top: 1rem;
+    opacity: 0;
+    /* Efecto neón al texto final */
+    text-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
+}
+
+.teddy-hug {
+    width: 250px;
+    margin: 0 auto;
+    transform: scale(0);
+}
+
+.teddy-hug img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    /* Borde blanco vibrante */
+    border: 8px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* --- Animaciones (No necesitan cambio) --- */
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .reason-card {
+        padding: 1.5rem;
+        margin: 0.8rem 0;
+    }
+
+    .reason-text {
+        font-size: 1.1rem;
+    }
+
+    .shuffle-button {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+    }
 }
