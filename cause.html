@@ -3,11 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Why You're My Best Friend! 💖</title>
+    <title>Why I Love You, Jennifer! ❤️</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <link rel="stylesheet" href="./cause.css">
+    
     <style>
-       
+        /* --- Inicio de Estilos Mejorados --- */
+        
+        /* Importar fuentes bonitas de Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@1,500&family=Poppins:wght@300;400;600&display=swap');
+
+        /* Fuente base: 'Poppins' (limpia) */
+        /* Fuente para títulos: 'Dancing Script' (cursiva) */
+        /* Fuente para razones: 'Playfair Display' (elegante) */
+
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* Fondo degradado romántico */
+            background: linear-gradient(135deg, #ffdde1 0%, #ee9ca7 100%);
+            color: #444;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden; /* Evita barras de scroll innecesarias */
+        }
+
+        /* El cursor de corazón que ya tenías, ¡gran idea! */
+        .custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        .custom-cursor svg {
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+        }
+        
+        /* Contenedor principal estilo "tarjeta" */
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95); /* Fondo blanco semi-transparente */
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            max-width: 500px;
+            width: 90%;
+            /* Animación de entrada */
+            transform: scale(0.9);
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Título principal */
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.2rem; /* Tamaño de fuente más grande */
+            color: #d6336c; /* Un rosa más profundo */
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Espacio para las razones (del JS) */
+        #reasons-container {
+            margin: 30px 0;
+            min-height: 100px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            font-weight: 500;
+            color: #555;
+            padding: 10px;
+        }
+
+        /* Botón mejorado */
+        .shuffle-button {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(45deg, #ff69b4, #d6336c);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(214, 51, 108, 0.4);
+            margin-top: 15px;
+        }
+
+        .shuffle-button:hover {
+            transform: translateY(-3px); /* Efecto de "levantar" */
+            box-shadow: 0 6px 20px rgba(214, 51, 108, 0.6);
+        }
+
+        .shuffle-button:active {
+            transform: translateY(-1px);
+        }
+
+        /* Contador de razones */
+        .reason-counter {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 15px;
+        }
+
+        /* Sección final */
+        .ending-section {
+            margin-top: 35px;
+            /* El JS probablemente hace visible esto, pero lo dejamos visible por si acaso */
+        }
+        
+        .teddy-hug img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%; /* Imagen redonda */
+            border: 5px solid #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        /* Texto final */
+        .ending-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #d6336c;
+            margin-top: 15px;
+        }
+        /* --- Fin de Estilos Mejorados --- */
     </style>
 </head>
 <body>
@@ -18,23 +159,21 @@
     </div>
 
     <div class="container">
-        <h1>Happy Birthday Priyaa 💖</h1>
+        <h1>Happy Birthday, Jennifer! ❤️</h1>
         
         <div id="reasons-container"></div>
         
-        <button class="shuffle-button">Click Here... 💕</button>
+        <button class="shuffle-button">Another reason why I love you... 💕</button>
         <div class="reason-counter"></div>
 
         <div class="ending-section">
             <div class="teddy-hug">
                 <img src="./d1.jpg" alt="Teddy Hug">
             </div>
-            <div class="ending-text">You're the BESTEST ! 💖</div>
+            <div class="ending-text">You're my everything, my love! 🥰</div>
         </div>
     </div>
 
-    <script src="cause.js">
-       
-    </script>
+    <script src="cause.js"></script>
 </body>
 </html>
